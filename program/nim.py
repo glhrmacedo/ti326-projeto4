@@ -37,6 +37,22 @@ class SARSA():
         self.alpha = alpha
         self.epsilon = epsilon
 
+    def update(self, old_state, action, new_state, reward):
+
+        pass
+
+    def get_value(self, state, action):
+
+        raise NotImplementedError
+
+    def update_value(self, state, action):
+
+        raise NotImplementedError
+
+    def choose_action(self, state, epsilon = True):
+
+        raise NotImplementedError
+
 
 def train(player, n_episodes):
 
