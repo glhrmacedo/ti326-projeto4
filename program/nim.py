@@ -103,6 +103,10 @@ def train(player, n_episodes):
             new_state = game.piles.copy()
 
             # when game is over, update Q values with rewards
+            if game.winner is not None:
+                player.update(state, action, new_state, -1)
+                player.update(last[game.player]['state'], last[game.player]['action'], new_state, 1)
+                break
 
             # if the game is continuing, no rewards yet
 
