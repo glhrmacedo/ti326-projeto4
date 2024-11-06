@@ -31,9 +31,11 @@ class Nim():
 
 class SARSA():
 
-    def __init__(self):
+    def __init__(self, alpha = 0.5, epsilon = 0.1):
         
-        pass
+        self.q = {}
+        self.alpha = alpha
+        self.epsilon = epsilon
 
 
 def train(player, n_episodes):
