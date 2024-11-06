@@ -135,6 +135,14 @@ def play():
         available_actions = Nim.available_actions(game.piles)
 
         # let human make a move
+        if game.player == human_player:
+            print('Your turn')
+            while True:
+                pile = int(input('Choose a pile: '))
+                count = int(input('Choose a count: '))
+                if (pile, count) in available_actions:
+                    break
+                print('Invalid move, try again')
 
         # have AI make a move
 
