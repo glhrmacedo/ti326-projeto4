@@ -81,6 +81,7 @@ class QLearning():
 
         raise NotImplementedError
 
+
 def train(player, n_episodes):
 
     for episode in range(n_episodes):
@@ -128,9 +129,10 @@ def play():
 
         # print contents of piles
         for i, pile in enumerate(game.piles):
-            print(f"Pile {i} : {pile}");
+            print(f"Pile {i} : {pile}")
 
         # compute avaiable actions
+        available_actions = Nim.available_actions(game.piles)
 
         # let human make a move
 
