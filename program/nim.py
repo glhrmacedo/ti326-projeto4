@@ -99,6 +99,8 @@ def train(player, n_episodes):
             last[game.player]['state'], last[game.player]['action'] = state, action
 
             # make move
+            game.move(action)
+            new_state = game.piles.copy()
 
             # when game is over, update Q values with rewards
 
