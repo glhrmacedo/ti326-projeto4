@@ -93,8 +93,10 @@ def train(player, n_episodes):
         while True:
 
             # keep track of current state and action
+            state, action = game.piles.copy(), player.choose_action(game.piles)
 
             # keep track of last state and action
+            last[game.player]['state'], last[game.player]['action'] = state, action
 
             # make move
 
