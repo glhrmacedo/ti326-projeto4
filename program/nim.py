@@ -118,7 +118,9 @@ def train(player, n_episodes):
 def play():
 
     # if no player order set, chose human's order randomly
-
+    if human_player is None:
+        human_player = int(random.uniform(0, 1))
+        
     # create new game
 
     while True:
