@@ -127,6 +127,8 @@ def play():
     while True:
 
         # print contents of piles
+        for i, pile in enumerate(game.piles):
+            print(f"Pile {i} : {pile}");
 
         # compute avaiable actions
 
