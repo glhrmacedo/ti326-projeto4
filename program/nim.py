@@ -88,7 +88,7 @@ def train(player, n_episodes):
         game = Nim()
 
         # keep track of last move made either player
-        last = {}
+        last = {0 : {'state' : None, 'action' : None}, {'state' : None, 'action' : None}}
 
         while True:
 
