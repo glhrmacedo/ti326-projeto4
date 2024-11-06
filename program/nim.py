@@ -122,6 +122,7 @@ def play():
         human_player = int(random.uniform(0, 1))
         
     # create new game
+    game = Nim()
 
     while True:
 
