@@ -107,10 +107,9 @@ def train(player, n_episodes):
                 player.update(state, action, new_state, -1)
                 player.update(last[game.player]['state'], last[game.player]['action'], new_state, 1)
                 break
-
             # if the game is continuing, no rewards yet
-
-            pass
+            elif last[game.player]['state'] is not None:
+                player.update(last[game.player]['state'], last[game.player]['action'], new_state, 0)
 
         # return the trained player
         return player
