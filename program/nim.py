@@ -143,9 +143,11 @@ def play():
                 if (pile, count) in available_actions:
                     break
                 print('Invalid move, try again')
-
         # have AI make a move
-
+        else:
+            print('AI turn')
+            pile, count = ai.choose_action(game.piles, epsilon = False)
+            print('AI chose to take {count} from pile {pile}.')
         # make move
 
         # check for winner
