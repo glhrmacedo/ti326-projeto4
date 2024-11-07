@@ -27,7 +27,7 @@ class Nim():
 
     def switch_player(self):
 
-        self.player = Nim.other_player(self.player)
+        self.player = self.other_player(self.player)
 
     def move(self, action):
 
@@ -36,7 +36,20 @@ class Nim():
         # check for errors
         if self.winner is not None:
             raise Exception('Game already won.')
+        else:
+            if pile < 0 or pile >= len(self.piles):
+                raise Exception('Invalid pile.')
+            else:
+                if count < 1 or count > self.piles[pile]:
+                    raise Exception('Invalid number of objects.')
+                
+        # update pile
+        self.piles[pile] -= count
+        self.switch_player()
 
+        # check the winner
+        if all(pile == 0 for pile in self.piles):
+            self.winner = self.player
 
 
 class SARSA():
@@ -96,10 +109,12 @@ def train(player, n_episodes):
 
     for episode in range(n_episodes):
 
+        print(f'Playing training game {episode + 1}')
+
         game = Nim()
 
         # keep track of last move made either player
-        last = {0 : {'state' : None, 'action' : None}, {'state' : None, 'action' : None}}
+        last = {0 : {'state' : None, 'action' : None}, 1 : {'state' : None, 'action' : None}}
 
         while True:
 
@@ -119,8 +134,9 @@ def train(player, n_episodes):
                 player.update(last[game.player]['state'], last[game.player]['action'], new_state, 1)
                 break
             # if the game is continuing, no rewards yet
-            elif last[game.player]['state'] is not None:
-                player.update(last[game.player]['state'], last[game.player]['action'], new_state, 0)
+            else:
+                if last[game.player]['state'] is not None:
+                    player.update(last[game.player]['state'], last[game.player]['action'], new_state, 0)
 
         # return the trained player
         return player
@@ -130,7 +146,7 @@ def play(ai, human = None):
 
     # if no player order set, chose human's order randomly
     if human is None:
-        human = int(random.uniform(0, 1))
+        human = 0 if random.uniform(0, 1) < 0.5 else 1
         
     # create new game
     game = Nim()
@@ -157,7 +173,7 @@ def play(ai, human = None):
         else:
             print('AI turn')
             pile, count = ai.choose_action(game.piles, epsilon = False)
-            print('AI chose to take {count} from pile {pile}.')
+            print(f'AI chose to take {count} from pile {pile}.')
         
         # make move
         game.move((pile, count))
@@ -166,4 +182,4 @@ def play(ai, human = None):
         if game.winner is not None:
             print('GAME OVER')
             winner = 'Human' if game.winner == human else 'AI'
-            print('Winner is {winner}')
+            print(f'Winner is {winner}')
