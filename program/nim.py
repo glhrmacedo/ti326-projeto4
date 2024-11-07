@@ -116,11 +116,11 @@ def train(player, n_episodes):
         return player
 
 
-def play():
+def play(ai, human = None):
 
     # if no player order set, chose human's order randomly
-    if human_player is None:
-        human_player = int(random.uniform(0, 1))
+    if human is None:
+        human = int(random.uniform(0, 1))
         
     # create new game
     game = Nim()
@@ -135,7 +135,7 @@ def play():
         available_actions = Nim.available_actions(game.piles)
 
         # let human make a move
-        if game.player == human_player:
+        if game.player == human:
             print('Your turn')
             while True:
                 pile = int(input('Choose a pile: '))
@@ -155,5 +155,5 @@ def play():
         # check for winner
         if game.winner is not None:
             print('GAME OVER')
-            winner = 'Human' if game.winner == human_player else 'AI'
+            winner = 'Human' if game.winner == human else 'AI'
             print('Winner is {winner}')
