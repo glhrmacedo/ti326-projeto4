@@ -148,8 +148,12 @@ def play():
             print('AI turn')
             pile, count = ai.choose_action(game.piles, epsilon = False)
             print('AI chose to take {count} from pile {pile}.')
+        
         # make move
-
+        game.move((pile, count))
+        
         # check for winner
-
-        pass
+        if game.winner is not None:
+            print('GAME OVER')
+            winner = 'Human' if game.winner == human_player else 'AI'
+            print('Winner is {winner}')
