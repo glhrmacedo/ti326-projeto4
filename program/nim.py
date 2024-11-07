@@ -23,11 +23,11 @@ class Nim():
 
     def other_player(self, player):
 
-        pass
+        return 0 if player == 1 else 1
 
     def switch_player(self):
 
-        pass
+        self.player = Nim.other_player(self.player)
 
     def move(self, action):
 
