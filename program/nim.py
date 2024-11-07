@@ -100,7 +100,7 @@ class SARSA():
         self.alpha = alpha
         self.epsilon = epsilon
 
-    def update(self, old_state, action, new_state, reward):
+    def update_model(self, old_state, action, new_state, reward):
 
         '''
             Update SARSA model, given and old state, an action taken
@@ -165,7 +165,7 @@ class QLearning():
         self.alpha = alpha
         self.epsilon = epsilon
 
-    def update(self, old_state, action, new_state, reward):
+    def update_model(self, old_state, action, new_state, reward):
 
         '''
             Update Q-learning model, given and old state, an action taken
@@ -255,13 +255,13 @@ def train(player, n_episodes):
 
             # when game is over, update Q values with rewards
             if game.winner is not None:
-                player.update(state, action, new_state, -1)
-                player.update(last[game.player]['state'], last[game.player]['action'], new_state, 1)
+                player.update_model(state, action, new_state, -1)
+                player.update_model(last[game.player]['state'], last[game.player]['action'], new_state, 1)
                 break
             # if the game is continuing, no rewards yet
             else:
                 if last[game.player]['state'] is not None:
-                    player.update(last[game.player]['state'], last[game.player]['action'], new_state, 0)
+                    player.update_model(last[game.player]['state'], last[game.player]['action'], new_state, 0)
 
         # return the trained player
         return player
