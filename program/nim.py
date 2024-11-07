@@ -31,7 +31,11 @@ class Nim():
 
     def move(self, action):
 
-        pass
+        pile, count = action
+
+        # check for errors
+        if self.winner is not None:
+            raise Exception('Game already won.')
 
 
 
