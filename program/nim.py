@@ -84,11 +84,11 @@ class Nim():
 
 class SARSA():
 
-    def __init__(self, alpha = 0.5, epsilon = 0.1):
+    def __init__(self, alpha = 0.5, gamma = 0.5, epsilon = 0.1):
 
         '''
             Initialize AI with an empty SARSA dictionary,
-            an alpha rate and an epsilon rate.
+            an alpha rate, gamma rate and an epsilon rate.
 
             The SARSA dictionary maps '(state, action)
             pairs to a Q-value.
@@ -98,12 +98,13 @@ class SARSA():
 
         self.q = dict()
         self.alpha = alpha
+        self.gamma = gamma
         self.epsilon = epsilon
 
     def update_model(self, old_state, action, new_state, reward):
 
         '''
-            Update SARSA model, given and old state, an action taken
+            Update SARSA model, given an old state, an action taken
             in that state, a new resulting state, and the reward received
             from taking that action.
         '''
@@ -149,11 +150,11 @@ class SARSA():
 
 class QLearning():
 
-    def __init__(self, alpha = 0.5, epsilon = 0.1):
+    def __init__(self, alpha = 0.5, gamma = 0.5, epsilon = 0.1):
 
         '''
             Initialize AI with an empty Q-learning dictionary,
-            an alpha rate and an epsilon rate.
+            an alpha rate, gamma rate and an epsilon rate.
 
             The Q-learning dictionary maps '(state, action)
             pairs to a Q-value.
@@ -163,12 +164,13 @@ class QLearning():
 
         self.q = dict()
         self.alpha = alpha
+        self.gamma = gamma
         self.epsilon = epsilon
 
     def update_model(self, old_state, action, new_state, reward):
 
         '''
-            Update Q-learning model, given and old state, an action taken
+            Update Q-learning model, given an old state, an action taken
             in that state, a new resulting state, and the reward received
             from taking that action.
         '''
